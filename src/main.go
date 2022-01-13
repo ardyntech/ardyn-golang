@@ -9,11 +9,12 @@ import (
 	"ardyngolang/src/certsec"
 
 	eureka "github.com/xuanbo/eureka-client"
+	//"github.com/hudl/fargo"
 )
 
 //--------------------------------------------------------------------
 
-func initService() {
+func registerWithSoothsayer() {
 
 	// Connect to Eureka
 	// https://github.com/xuanbo/eureka-client/blob/master/examples/main.go
@@ -46,6 +47,7 @@ func main() {
 	log.Println("=================================")
 	log.Println("Ardyn-Golang Example Service v0.1")
 	log.Println("=================================")
+	log.Println()
 
 	// Get the command line flags
 	configPtr := flag.String("config", "", "Config file location")
@@ -56,14 +58,14 @@ func main() {
 	// Parse the properties file
 	env.ParseConfig(*configPtr)
 
-	// Initialize the service
-	initService()
+	// Register this service with Soothsayer
+	registerWithSoothsayer()
 
 	// Initialize the security
 	if !certsec.InitSecurity() {
 
 		// Something went wrong
-		log.Fatalln("*** Error initializing security subsystem ***")
+		log.Fatalln("*** Error initializing certificate ***")
 	}
 
 	// Run the HTTP server
