@@ -1,1 +1,1 @@
-# ardyn-golang
+# Ardyn-Golang Example Application
